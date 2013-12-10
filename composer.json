@@ -1,0 +1,16 @@
+{
+    "name": "joseahernandez/blog-exercise",
+    "description": "Exercise to improve Doctrine knowledge",
+    "autoload": {
+        "psr-0": {
+            "joseahernandez\\blogExercise": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "doctrine/orm": "2.4.*",
+        "monolog/monolog": "1.7.*",
+        "symfony/console": "2.4.*",
+        "symfony/doctrine-bridge": "2.4.*"
+    }
+}
