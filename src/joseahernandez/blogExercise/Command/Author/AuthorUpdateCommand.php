@@ -63,7 +63,7 @@ class AuthorUpdateCommand extends BaseCommand
         $currentName = $input->getArgument('currentName');
         $newName     = $input->getArgument('newName');
 
-        $author = $this->em->getRepository('joseahernandez\blogExercise\Entity\Author')->findByName($currentName);
+        $author = $this->em->getRepository('joseahernandez\blogExercise\Entity\Author')->findOneByName($currentName);
 
         if (null == $author) {
             $output->writeln('<fg=red>Not exists an author with name ' . $currentName . '</fg=red>');
