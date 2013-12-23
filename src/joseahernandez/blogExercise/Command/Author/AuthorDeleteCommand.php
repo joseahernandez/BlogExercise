@@ -3,6 +3,7 @@
 namespace joseahernandez\blogExercise\Command\Author;
 
 use Doctrine\ORM\EntityManager;
+use joseahernandez\blogExercise\Author\AuthorDeleter;
 use joseahernandez\blogExercise\Command\BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,11 +16,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 class AuthorDeleteCommand extends BaseCommand
 {
     /**
-     * @param EntityManager $em
+     * @var AuthorDeleter
      */
-    public function __construct(EntityManager $em)
+    protected $authorDeleter;
+
+    /**
+     * @param EntityManager $em
+     * @param AuthorDeleter $authorDeleter
+     */
+    public function __construct(EntityManager $em, AuthorDeleter $authorDeleter)
     {
         parent::__construct($em);
+        $this->authorDeleter = $authorDeleter;
     }
 
     /**
@@ -42,16 +50,10 @@ class AuthorDeleteCommand extends BaseCommand
     {
         $name = $input->getArgument('name');
 
-        $author = $this->em->getRepository('joseahernandez\blogExercise\Entity\Author')->findOneByName($name);
-
-        if (null == $author) {
-            $output->writeln('<fg=red>Not exists an author with name ' . $name . '</fg=red>');
-        } else {
-            $this->em->remove($author);
-            $this->em->flush();
-
+        if ($this->authorDeleter->deleteByName($name)) {
             $output->writeln('<fg=green>Author deleted successfully</fg=green>');
+        } else {
+            $output->writeln('<fg=red>Not exists an author with name ' . $name . '</fg=red>');
         }
-
     }
 } 
