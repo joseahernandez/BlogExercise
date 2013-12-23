@@ -7,10 +7,12 @@ use Symfony\Component\Console\Application;
 use joseahernandez\blogExercise\Command\Author\AuthorCreateCommand;
 use joseahernandez\blogExercise\Command\Author\AuthorSearchCommand;
 use joseahernandez\blogExercise\Command\Author\AuthorUpdateCommand;
+use joseahernandez\blogExercise\Command\Author\AuthorDeleteCommand;
 
 $console = new Application();
 $console->add(new AuthorCreateCommand($em, new \joseahernandez\blogExercise\Author\AuthorCreator($em)));
 $console->add(new AuthorSearchCommand($em));
 $console->add(new AuthorUpdateCommand($em, new \joseahernandez\blogExercise\Author\AuthorModificator($em)));
+$console->add(new AuthorDeleteCommand($em));
 
 $console->run();
