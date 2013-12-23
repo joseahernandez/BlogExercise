@@ -13,6 +13,6 @@ $console = new Application();
 $console->add(new AuthorCreateCommand($em, new \joseahernandez\blogExercise\Author\AuthorCreator($em)));
 $console->add(new AuthorSearchCommand($em));
 $console->add(new AuthorUpdateCommand($em, new \joseahernandez\blogExercise\Author\AuthorModificator($em)));
-$console->add(new AuthorDeleteCommand($em));
+$console->add(new AuthorDeleteCommand($em, new \joseahernandez\blogExercise\Author\AuthorDeleter($em)));
 
 $console->run();
