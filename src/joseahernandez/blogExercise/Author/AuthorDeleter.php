@@ -32,10 +32,14 @@ class AuthorDeleter
     public function deleteByName($name)
     {
         $author = $this->em
-            ->getRepository('\joseahernandez\blogExercise\Author')
+            ->getRepository('\joseahernandez\blogExercise\Entity\Author')
             ->findOneByName($name);
 
-        return $this->delete($author);
+        if (null !== $author) {
+            return $this->delete($author);
+        }
+
+        return false;
     }
 
     /**
@@ -46,10 +50,14 @@ class AuthorDeleter
     public function deleteById($id)
     {
         $author = $this->em
-            ->getRepository('\joseahernandez\blogExercise\Author')
+            ->getRepository('\joseahernandez\blogExercise\Entity\Author')
             ->find($id);
 
-        return $this->delete($author);
+        if (null !== $author) {
+            return $this->delete($author);
+        }
+
+        return false;
     }
 
     /**
@@ -60,7 +68,7 @@ class AuthorDeleter
     public function delete(Author $author)
     {
         $this->em->remove($author);
-        $this->flush();
+        $this->em->flush();
 
         return true;
     }
