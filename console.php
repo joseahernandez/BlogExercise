@@ -13,6 +13,7 @@ use joseahernandez\blogExercise\Command\Tag\TagDeleteCommand;
 use joseahernandez\blogExercise\Command\Tag\TagUpdateCommand;
 use joseahernandez\blogExercise\Command\Tag\TagSearchCommand;
 use joseahernandez\blogExercise\Command\Article\ArticleCreateCommand;
+use joseahernandez\blogExercise\Command\Article\ArticleDeleteCommand;
 
 $console = new Application();
 $console->add(new AuthorCreateCommand($em, new \joseahernandez\blogExercise\Author\AuthorCreator($em)));
@@ -26,5 +27,6 @@ $console->add(new TagUpdateCommand($em, new \joseahernandez\blogExercise\Tag\Tag
 $console->add(new TagSearchCommand($em));
 
 $console->add(new ArticleCreateCommand($em, new \joseahernandez\blogExercise\Article\ArticleCreator($em)));
+$console->add(new ArticleDeleteCommand($em, new \joseahernandez\blogExercise\Article\ArticleDeleter($em)));
 
 $console->run();
