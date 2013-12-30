@@ -41,7 +41,6 @@ class ArticleCreator
         $article->setContent($content);
         $article->setAuthor($author);
         $article->setTags($tags);
-        $article->setCreatedAt(new \DateTime());
 
         $this->em->persist($article);
         $this->em->flush();
