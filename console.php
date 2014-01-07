@@ -13,6 +13,12 @@ use joseahernandez\blogExercise\Command\Tag\TagDeleteCommand;
 use joseahernandez\blogExercise\Command\Tag\TagUpdateCommand;
 use joseahernandez\blogExercise\Command\Tag\TagSearchCommand;
 
+use joseahernandez\blogExercise\Command\Article\ArticleCreateCommand;
+use joseahernandez\blogExercise\Command\Article\ArticleDeleteCommand;
+use joseahernandez\blogExercise\Command\Article\ArticleUpdateCommand;
+use joseahernandez\blogExercise\Command\Article\ArticleSearchCommand;
+
+
 $console = new Application();
 $console->add(new AuthorCreateCommand($em, new \joseahernandez\blogExercise\Author\AuthorCreator($em)));
 $console->add(new AuthorSearchCommand($em));
@@ -23,5 +29,10 @@ $console->add(new TagCreateCommand($em, new \joseahernandez\blogExercise\Tag\Tag
 $console->add(new TagDeleteCommand($em, new \joseahernandez\blogExercise\Tag\TagDeleter($em)));
 $console->add(new TagUpdateCommand($em, new \joseahernandez\blogExercise\Tag\TagModificator($em)));
 $console->add(new TagSearchCommand($em));
+
+$console->add(new ArticleCreateCommand($em, new \joseahernandez\blogExercise\Article\ArticleCreator($em)));
+$console->add(new ArticleDeleteCommand($em, new \joseahernandez\blogExercise\Article\ArticleDeleter($em)));
+$console->add(new ArticleUpdateCommand($em, new \joseahernandez\blogExercise\Article\ArticleModificator($em)));
+$console->add(new ArticleSearchCommand($em));   
 
 $console->run();

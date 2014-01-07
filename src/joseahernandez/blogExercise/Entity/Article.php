@@ -3,7 +3,9 @@
 namespace joseahernandez\blogExercise\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * Class Article
@@ -33,6 +35,7 @@ class Article
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", name="created_at", nullable=false, options={"default": "CURRENT_TIMESTAMP"})
      */
     protected $createdAt;
